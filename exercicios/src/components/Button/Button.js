@@ -4,9 +4,9 @@ const Button = (props) => {
     return(
         <button
         type="button"
-        onClick={props.add}
+        onClick={props.click}
         >
-        Cadastrar
+        {props.children}
         </button>
     )
 }

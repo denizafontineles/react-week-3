@@ -24,31 +24,50 @@ class Home extends React.Component{
         this.setState({
             nomes:[
                 this.state.value,
-                ...this.state.value
+                ...this.state.nomes
             ]
         })  
     }
 
-    render(){
-        return(
-        <div>
-            <Input
-            frase="Digite seu nome"
-            tipo="text"
-            change={this.handleChangeInput}
-            ></Input>
-            <Button
-            add={this.handleAdd}
-            />
+    handleRemove = (item) => { 
+            let array = this.state.nomes.filter(nome => 
+                nome !== item
+            )
+            this.setState({
+                    nomes: array 
+            })
+            console.log(array);
+            
+    }
 
-            <ul>
-                {this.state.nomes.map((nomeAtual, index) => (
-                        <li key={index}> {nomeAtual} </li>
-                ))}
-                
-            </ul>
+    render() {
+        return (
+            <div>
+                <Input
+                    frase="Digite seu nome"
+                    tipo="text"
+                    change={this.handleChangeInput}
+                ></Input>
+                <Button
+                    click={this.handleAdd}>
+                    Cadastrar
+            </Button>
 
-        </div>
+
+                <ul>
+                    {this.state.nomes.map((nomeAtual, index) => {
+                        return(
+                        <div key={index}>
+                        <li>{nomeAtual}</li>
+                            <Button click={() => this.handleRemove(nomeAtual)}>X</Button>
+                        </div>
+                        )
+                    }
+                    )}
+
+                </ul>
+
+            </div>
         )
     }
 }

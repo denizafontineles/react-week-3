@@ -29,6 +29,14 @@ class Home extends React.Component {
         })
     }
 
+    remover = () => {
+        this.setState({
+            nomes: [
+                
+            ]
+        })
+    }
+
     render(){
         return (
             <Fragment>
@@ -40,12 +48,13 @@ class Home extends React.Component {
                 </Input>
 
                 <Button
-                add={this.adicionarItem}
-                />
+                click={this.adicionarItem}>Cadastrar</Button>
 
                 <ul>
                     {this.state.nomes.map((a, index) => (
                     <li key={index}>{a}</li>
+                    <Button
+                    click={this.removerItem}>X</Button>
                     ))}
                 </ul>
 
